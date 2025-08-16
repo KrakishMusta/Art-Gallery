@@ -1,4 +1,4 @@
-<template>
+<!-- <template>
   <div>
     <h1>{{ message }}</h1>
     <button type="button" @click="handleClick">Click me</button>
@@ -44,4 +44,4 @@ export default defineComponent({
 div {
   color: red;
 }
-</style>
+</style> -->
