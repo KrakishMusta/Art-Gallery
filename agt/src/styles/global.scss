@@ -1,0 +1,10 @@
+@use "./reset.scss";
+@use "./normalize.scss";
+
+@use "./variables";
+@use "./theme";
+@use "./fonts";
+
+body {
+    background-color: var(--page-bg-color);
+}

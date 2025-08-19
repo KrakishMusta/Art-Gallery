@@ -1,0 +1,93 @@
+
+
+:root {
+    --masterhead-height: 64px;
+    --logo-width: 73px;
+    --logo-height: 16px;
+    --page-margin-top: 27px;
+    --page-margin-bottom: 80px;
+    --main-margin: 20px;
+    --columns-gutter: 5px;
+    --columns-count: 6;
+    --column-span: 6;
+}
+
+@media (min-width: 320px) and (max-width: 767px) {
+  :root {
+    --masterhead-height: 64px;
+    --logo-width: 73px;
+    --logo-height: 16px;
+
+    --page-margin-top: 27px;
+    --page-margin-bottom: 80px;
+
+    --main-margin: 20px;
+    --columns-gutter: 5px;
+    --columns-count: 6;
+    --column-span: 6;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  :root {
+    --masterhead-height: 88px;
+    --logo-width: 73px;
+    --logo-height: 16px;
+
+    --page-margin-top: 44px;
+    --page-margin-bottom: 100px;
+
+    --main-margin: 20px;
+    --columns-gutter: 24px;
+    --columns-count: 8;
+    --column-span: 4;
+  }
+}
+
+@media (min-width: 1024px) and (max-width: 1279px) {
+  :root {
+    --masterhead-height: 88px;
+    --logo-width: 73px;
+    --logo-height: 16px;
+
+    --page-margin-top: 44px;
+    --page-margin-bottom: 100px;
+
+    --main-margin: 20px;
+    --columns-gutter: 24px;
+    --columns-count: 8;
+    --column-span: 4;
+  }
+}
+
+@media (min-width: 1280px) and (max-width: 1439px) {
+  :root {
+    --masterhead-height: 80px;
+    --logo-width: 73px;
+    --logo-height: 16px;
+
+    --page-margin-top: 44px;
+    --page-margin-bottom: 100px;
+
+    --main-margin: 100px;
+    --columns-gutter: 32px;
+    --columns-count: 12;
+    --column-span: 4;
+  }
+}
+
+@media (min-width: 1440px) {
+  :root {
+    --masterhead-height: 80px;
+    --logo-width: 91px;
+    --logo-height: 20px;
+
+    --page-margin-top: 44px;
+    --page-margin-bottom: 100px;
+
+    --main-margin: 100px;
+    --columns-gutter: 32px;
+    --columns-count: 12;
+    --column-span: 4;
+  }
+}

@@ -1,0 +1,47 @@
+:root {
+    --primary-white: #FFFFFF;
+    --primary-black: #121212;
+    --primary-light-gray: #DEDEDE;
+    --primary-dark-gray: #575757;
+
+    --secondary-white: #FCFCFC;
+    --secondary-black: #1A1818;
+    --secondary-gray: #9C9C9C;
+
+    --accent-red: #9B4B4B;
+    --accent-gold: #AB8956;
+}
+
+:root {
+  --page-bg-color: var(--primary-white);
+  --primary-gray: var(--primary-dark-gray);
+
+  --theme-primary: var(--primary-black);
+  --theme-secondary: var(--secondary-white);
+  --theme-gray: var(--secondary-gray);
+  --theme-btn-hover-color: #F3F3F3;
+
+  --input-border: var(--primary-light-gray);
+  --input-background: transparent;
+  --input-focus: var(--primary-dark-gray);
+
+  --card-color: var(--primary-black);
+  --accent-color: var(--accent-red);
+}
+
+ // тёмная тема
+.dark-theme {
+  --page-bg-color: var(--primary-black);
+  --primary-gray: var(--primary-light-gray);
+
+  --theme-primary: var(--primary-light-gray);
+  --theme-secondary: var(--secondary-black);
+  --theme-gray: var(--primary-dark-gray);
+  --theme-btn-hover-color: #1B1B1B;
+
+  --input-border: var(--theme-secondary);
+  --input-background: var(--theme-secondary);
+  --input-focus: var(--primary-light-gray);
+
+  --accent-color: var(--accent-gold);
+}
