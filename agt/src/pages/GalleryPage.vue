@@ -21,9 +21,13 @@ watch(
 </script>
 <template>
   <div class="page-wrapper">
-    <Search />
-    <CardWrapper :paintings="gallery.paintings" />
+    <Search @query-changed="gallery.setQuery" />
+    <CardWrapper
+      :paintings="gallery.paintings"
+      :query="gallery.query.paintingName"
+    />
     <Pagination
+      v-show="gallery.paintings.length !== 0"
       :currentPage="gallery.currentPage"
       :totalPages="Math.ceil(gallery.totalCount / gallery.limit)"
       @page-changed="gallery.setPage"

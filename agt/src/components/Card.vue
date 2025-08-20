@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, computed } from 'vue';
+import { ref, computed, onMounted } from 'vue';
 import { useGalleryStore } from '@/stores/gallery.ts';
 import type { CardStructure } from '@/types/tapes.ts';
 
@@ -26,18 +26,20 @@ const imageSrc = ref(baseURL + props.painting.imageUrl);
 
 function reloadImage(e: Event) {
   const img = e.target as HTMLImageElement;
-
+  console.log(props.painting.imageUrl);
   if (retries.value < maxRetries) {
     retries.value += 1;
     console.warn(
       `Ошибка загрузки ${img.src}, пробуем повторно (${retries.value}/${maxRetries})`
     );
-    // cache-buster чтобы не брать битый кеш
     img.src = `${baseURL + props.painting.imageUrl}?retry=${Date.now()}`;
   } else {
     console.error('Изображение не загрузилось, показываем заглушку');
   }
 }
+onMounted(() => {
+  console.log(props.painting.name, props.painting.imageUrl);
+});
 </script>
 <template>
   <div class="card-tablet">

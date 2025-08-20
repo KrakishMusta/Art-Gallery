@@ -15,12 +15,22 @@ const pagesToShow = computed(() => {
   const total = props.totalPages;
   const current = props.currentPage;
 
+  console.log(total);
+
+  if (total === 0) {
+    pages.push({
+      lable: '...',
+      link: 0,
+      isActive: false,
+    });
+    return pages;
+  }
   if (total <= 5) {
-    for (let i = 0; i <= total; i += 1)
+    for (let i = 1; i <= total; i += 1)
       pages.push({
-        lable: 1,
-        link: i + 1,
-        isActive: i + 1 === props.currentPage,
+        lable: i,
+        link: i,
+        isActive: i === props.currentPage,
       });
   } else {
     pages.push({
@@ -65,20 +75,20 @@ const pagesToShow = computed(() => {
       isActive: props.currentPage === total,
     });
   }
-
+  // console.log(pages);
   return pages;
 });
 
 const goToPage = (page: number) => {
-  console.log('gotopage', page);
+  // console.log('gotopage', page);
   if (page >= 1 && page <= props.totalPages) {
     emit('page-changed', page);
   }
 };
 
-onMounted(() => {
-  console.log(props.currentPage, props.totalPages);
-});
+// onMounted(() => {
+//   console.log(props.currentPage, props.totalPages);
+// });
 </script>
 <template>
   <div class="nav-wrapper">
@@ -105,7 +115,7 @@ onMounted(() => {
     </button>
     <nav class="nav-wrapper__pagination">
       <button
-        :disabled="page.isActive"
+        :disabled="page.isActive || page.link === 0"
         :class="{ active: page.isActive }"
         class="nav-wrapper__page-button"
         type="button"

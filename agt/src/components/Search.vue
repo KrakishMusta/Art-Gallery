@@ -2,11 +2,19 @@
 import { ref } from 'vue';
 
 const searchText = ref('');
+
+const emit = defineEmits<{
+  (e: 'query-changed', query: string): void;
+}>();
+
+const queryChange = () => {
+  emit('query-changed', searchText.value);
+};
 </script>
 <template>
   <div class="search-wrapper">
     <div class="search-block">
-      <button type="button" class="search-block__search">
+      <button type="button" class="search-block__search" @click="queryChange">
         <svg
           width="20"
           height="20"
@@ -26,6 +34,7 @@ const searchText = ref('');
         aria-label="input"
         type="text"
         placeholder="Painting title"
+        @keyup.enter="queryChange"
       />
       <button
         v-show="searchText"
