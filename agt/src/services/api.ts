@@ -9,19 +9,4 @@ const api = axios.create({
   },
 });
 
-// Добавляем интерсептор для обработки параметров
-api.interceptors.request.use((config) => {
-  if (!config.params?.limit) {
-    return {
-      ...config,
-      params: {
-        ...config.params,
-        _limit: 6,
-      },
-    };
-  }
-
-  return config;
-});
-
 export default api;

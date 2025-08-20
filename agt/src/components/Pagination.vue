@@ -10,29 +10,12 @@ const emit = defineEmits<{
   (e: 'page-changed', page: number): void;
 }>();
 
-interface PaginationLink {
-  isActive: boolean;
-  link: number;
-}
-
-const links = computed(() => {
-  // for (let i = 1; i <= props.totalPages + 1; i += 1)
-  // {
-  //   if
-  // }
-  return Array.from({ length: props.totalPages }, (_, i) => ({
-    link: i + 1,
-    isActive: i + 1 === props.currentPage,
-  }));
-});
-
 const pagesToShow = computed(() => {
   const pages = [];
   const total = props.totalPages;
   const current = props.currentPage;
 
   if (total <= 5) {
-    // Показываем все страницы
     for (let i = 0; i <= total; i += 1)
       pages.push({
         lable: 1,
@@ -40,22 +23,18 @@ const pagesToShow = computed(() => {
         isActive: i + 1 === props.currentPage,
       });
   } else {
-    // Всегда первая
     pages.push({
       lable: 1,
       link: 1,
       isActive: props.currentPage === 1,
     });
 
-    // Левая "..."
     if (current > 3)
       pages.push({
         lable: '...',
         link: 0,
         isActive: false,
       });
-
-    // Соседние страницы
 
     let start = Math.max(2, current - 1);
     let end = Math.min(total - 1, current + 1);
@@ -73,7 +52,6 @@ const pagesToShow = computed(() => {
         isActive: props.currentPage === i,
       });
 
-    // Правая "..."
     if (current < total - 2)
       pages.push({
         lable: '...',
@@ -81,7 +59,6 @@ const pagesToShow = computed(() => {
         isActive: false,
       });
 
-    // Последняя
     pages.push({
       lable: total,
       link: total,
@@ -109,7 +86,8 @@ onMounted(() => {
       type="button"
       class="nav-wrapper__arrow-button"
       :class="{ active: props.currentPage !== 1 }"
-      :disabled="currentPage === 1"
+      :disabled="props.currentPage === 1"
+      @click="goToPage(props.currentPage - 1)"
     >
       <svg
         width="20"
@@ -142,7 +120,8 @@ onMounted(() => {
       type="button"
       class="nav-wrapper__arrow-button"
       :class="{ active: props.currentPage !== props.totalPages }"
-      :disabled="currentPage === totalPages"
+      :disabled="props.currentPage === totalPages"
+      @click="goToPage(props.currentPage + 1)"
     >
       <svg
         width="20"

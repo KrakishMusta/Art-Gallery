@@ -71,7 +71,6 @@ const searchText = ref('');
   grid-column: span var(--span) / -1;
   display: flex;
   padding: 8px 16px;
-  //   align-self: flex-end;
   align-items: center;
   gap: 12px;
   background-color: var(--searchFill);
@@ -146,7 +145,7 @@ const searchText = ref('');
 }
 
 @media (min-width: 768px) {
-  .search-wrapper__input {
+  .search-block__input {
     --fontSize: 14px;
   }
 }
