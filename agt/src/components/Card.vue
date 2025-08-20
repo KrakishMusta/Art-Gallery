@@ -1,17 +1,37 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { onMounted, computed } from 'vue';
+import { useGalleryStore } from '@/stores/gallery.ts';
+import type { CardStructure } from '@/types/tapes.ts';
+
+const baseURL = import.meta.env.VITE_API_URL;
+
+const props = defineProps<{
+  painting: CardStructure;
+}>();
+
+const gallery = useGalleryStore();
+
+const authorName = computed(
+  () => gallery.authorsDictionary[props.painting.authorId] ?? 'Unknown Author'
+);
+const locationName = computed(
+  () =>
+    gallery.locationsDictionary[props.painting.locationId] ?? 'Unknown Location'
+);
+</script>
 <template>
   <div class="card-tablet">
-    <!-- <img src="" alt="" /> -->
+    <img :src="baseURL + painting.imageUrl" :alt="painting.imageUrl" />
     <div class="card-tablet__overlay">
       <div class="card-tablet__info-wrapper">
         <span class="card-tablet__line"></span>
         <div class="card-tablet__info card-tablet__info--default">
-          <p class="top-text">cascate di tivoli</p>
-          <p class="top-bottom">1761</p>
+          <p class="top-text">{{ painting.name }}</p>
+          <p class="top-bottom">{{ painting.created }}</p>
         </div>
         <div class="card-tablet__info card-tablet__info--hover">
-          <p class="top-text">Artist</p>
-          <p class="top-bottom">Location</p>
+          <p class="top-text">{{ authorName }}</p>
+          <p class="top-bottom">{{ locationName }}</p>
         </div>
       </div>
     </div>
@@ -35,6 +55,9 @@
       transform: translateX(calc(0% + 4px));
       opacity: 1;
     }
+    img {
+      transform: scale(1.1);
+    }
   }
   &:not(:hover) {
     .card-tablet__info--default {
@@ -42,15 +65,23 @@
       opacity: 1;
       transition:
         transform 0.5s ease 0.1s,
-        opacity 0.5s ease 0.1s; // возвращается сразу
+        opacity 0.5s ease 0.1s;
     }
     .card-tablet__info--hover {
       transform: translateX(-100%);
       opacity: 0;
       transition:
         transform 0.5s ease 0.1s,
-        opacity 0.5s ease 0.1s; // уезжает с задержкой
+        opacity 0.5s ease 0.1s;
     }
+  }
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+    transition: transform 0.5s ease;
   }
 
   &__info--default {

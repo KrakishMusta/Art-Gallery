@@ -104,10 +104,10 @@ const searchText = ref('');
     margin: 0;
     padding: 0 40px 0 0;
     font-family: 'Inter';
+    font-size: var(--fontSize);
     font-weight: 300;
     background-color: transparent;
     color: var(--primary-gray);
-    font-size: var(--fontSize);
 
     flex: 1;
 

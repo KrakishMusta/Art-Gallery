@@ -3,25 +3,21 @@ import { ref, onMounted } from 'vue';
 
 const theme = ref<'light' | 'dark'>('light');
 
-// Функция применения темы
 function applyTheme(value: 'light' | 'dark') {
   document.body.classList.toggle('dark-theme', value === 'dark');
   localStorage.setItem('theme', value);
 }
 
-// Переключение темы
 function toggleTheme() {
   theme.value = theme.value === 'light' ? 'dark' : 'light';
   applyTheme(theme.value);
 }
 
-// Загружаем тему из localStorage при монтировании
 onMounted(() => {
   const savedTheme = localStorage.getItem('theme') as 'light' | 'dark' | null;
   if (savedTheme) {
     theme.value = savedTheme;
   } else {
-    // авто-определение по системным настройкам
     theme.value = window.matchMedia('(prefers-color-scheme: dark)').matches
       ? 'dark'
       : 'light';

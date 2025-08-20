@@ -27,6 +27,11 @@
 
   --card-color: var(--primary-black);
   --accent-color: var(--accent-red);
+
+  --button-rgb: 18, 18, 18;
+  --button-opacity: 0.05;
+
+  --primary: var(--primary-black);
 }
 
  // тёмная тема
@@ -44,4 +49,9 @@
   --input-focus: var(--primary-light-gray);
 
   --accent-color: var(--accent-gold);
+
+  --button-rgb: 26, 24, 24;
+  --button-opacity: 1;
+
+  --primary: var(--primary-white);
 }
