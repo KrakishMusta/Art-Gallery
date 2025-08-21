@@ -96,7 +96,6 @@ const queryChange = () => {
     border: none;
     padding: 0;
     background-color: transparent;
-    cursor: zoom-in;
 
     svg {
       path {
@@ -131,6 +130,9 @@ const queryChange = () => {
     }
     &::-webkit-input-placeholder {
       color: var(--placeholderColor);
+    }
+    &:focus::placeholder {
+      color: transparent;
     }
   }
   &__clear {

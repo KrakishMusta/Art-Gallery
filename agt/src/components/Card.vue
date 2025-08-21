@@ -68,18 +68,20 @@ onMounted(() => {
 .card-tablet {
   --span: var(--column-span);
   --bgColor: var(--page-bg-color);
+  --lineMargin: 4px;
   overflow: hidden;
   position: relative;
   grid-column: span var(--span);
   background-color: var(--accent-red);
   aspect-ratio: calc(392 / 260);
+  text-transform: uppercase;
   &:hover {
     .card-tablet__info--default {
       transform: translateY(100%);
       opacity: 0;
     }
     .card-tablet__info--hover {
-      transform: translateX(calc(0% + 4px));
+      transform: translateX(calc(0% + var(--lineMargin)));
       opacity: 1;
     }
     img {
@@ -186,6 +188,9 @@ onMounted(() => {
   }
 }
 @media (min-width: 320px) and (max-width: 1279px) {
+  .card-tablet {
+    --lineMargin: 0;
+  }
   .card-tablet__line {
     display: none;
   }
