@@ -1,19 +1,174 @@
 # Art-Gallery
-Главная страница сайта художественной галереи. Тестовое задание, демонстрирующее владение заданным стеком технологий. Свёрстано по дизайн-макету Figma.
+Главная страница сайта художественной галереи. Тестовое задание, демонстрирующее владение заданным стеком технологий. [Техническое задание](https://docs.google.com/document/d/1nwRIhWeyTPASWONfLWQLvxbwGk1pC4ktoa8eZQCae6U/edit?tab=t.0). Свёрстано по дизайн-макету [Figma](https://www.figma.com/design/aiHbGk1zCHl4PRThC6cZZm/FWT-Front-end-%D0%A2%D0%B5%D1%81%D1%82%D0%BE%D0%B2%D0%BE%D0%B5-%D0%B7%D0%B0%D0%B4%D0%B0%D0%BD%D0%B8%D0%B5?node-id=2417-43&p=f&t=F2kulFbDiLop7Kfr-0).
 
+## Запуск
+Для того, чтобы запустить приложение необходимо:
+*  Установить node.js версии 22.14.0 и выше.
+* Перейти в директорию AGT, выполнить установку зависимостей через
+  ```bash
+   npm i
+  ```
+* В директории AGT запустить
+  ```bash
+   npm run dev
+  ```
+
+Для обновления ветви gh-pages при хостинге с GithubPages выполните:
+* В директории AGT запустить
+  ```bash
+   npm run predeploy
+* После
+  ```bash
+   npm run deploy
 ## Стек технологий
+* **Фреймворк** - Vue 3 (Composition Api, версии 3.5.18)
+* **Typescript** (версии 5.5.4)
+* **Препроцессор** CSS — SASS (синтаксис SCSS, версии 1.90.0)
+* **HTTP-клиент** — Axios (версии 1.11.0)
+* **Управление состоянием** — Pinia (версии 3.0.3)
+* **Сборщик/бандлер** — Vite (версии 7.1.2)
+* **DevTools** — vite-plugin-vue-devtools (версии 8.0.0)
 
-## Описание к настройкам package.json для линтеров и форматоров
-  "scripts": {
-    "dev": "vite",
-    "build": "run-p type-check \"build-only {@}\" --",
-    "preview": "vite preview",
-    "build-only": "vite build",
-    "type-check": "vue-tsc --build",
-    "lint": "eslint . --ext .ts,.tsx,.vue", //проверка всех .ts, .tsx, .vue файлов ESLint.
-    "lint:fix": "eslint . --ext .ts,.tsx,.vue --fix", //автофикс ошибок ESLint + Prettier (если Prettier интегрирован в ESLint).
-    "format": "prettier --check \"src/**/*.{ts,vue,js,jsx,tsx}\"", //проверка форматирования Prettier отдельно (по src).
-    "format:fix": "prettier --write \"src/**/*.{ts,vue,js,jsx,tsx}\"", //автоисправление форматирования Prettier.
-    "check": "npm run lint && npm run type-check && npm run format", //единая команда для проверки ESLint + TypeScript + Prettier.
-    "fix": "npm run lint:fix && npm run type-check && npm run format:fix" //единая команда для исправления всего, что возможно.
-  },
+> ⚠️ **Предупреждение:** не рекомендуется обновлять версию Typescript вне >=4.7.4 <5.6.0, иные версии могут не поддерживаться **typescript-eslint/typescript-estree**.
+
+## Линтинг и форматирование кода
+В проекте используется единый набор инструментов для контроля качества кода и его автоматического форматирования.
+### ESLint
+
+**ESLint** — основной линтер для JavaScript, TypeScript и Vue.
+
+Версия: 8.57.0
+
+Конфигурации:
+* @vue/eslint-config-airbnb — стиль кода на основе Airbnb style guide
+* @vue/eslint-config-typescript — правила для TypeScript
+* eslint-config-prettier — отключает правила, конфликтующие с Prettier
+
+Плагины:
+* eslint-plugin-vue — поддержка Vue 3
+* eslint-plugin-vuejs-accessibility — проверка доступности компонентов (a11y)
+* eslint-plugin-jsx-a11y — проверка доступности JSX (подтягивается Airbnb)
+* eslint-plugin-react — часть набора Airbnb (в проекте напрямую не используется)
+* eslint-plugin-import — контроль корректности импортов
+* @typescript-eslint/eslint-plugin + @typescript-eslint/parser — правила и парсер для TypeScript
+* eslint-plugin-prettier — интеграция Prettier в ESLint
+
+### Prettier
+
+**Prettier** используется как форматтер для единообразного стиля кода.
+
+Версия: 3.6.2
+
+Форматирует: JavaScript, TypeScript, Vue, JSON, Markdown, SCSS и др.
+
+Работает совместно с **ESLint** через eslint-plugin-prettier.
+
+### Скрипты (package.json)
+В проекте настроены удобные скрипты для разработки, сборки, деплоя и проверки качества кода.
+
+* Для использования скрипта в директории AGT запустите:
+  ```bash
+   npm run <Команда скрипта>
+  ```
+### Основные
+
+* dev — запуск Vite в режиме разработки.
+
+* build — сборка проекта с проверкой типов. Использует run-p для параллельного запуска type-check и build-only.
+
+* build-only — сборка проекта без проверки типов.
+
+* preview — предпросмотр собранного проекта локально.
+
+### Деплой
+
+* predeploy — автоматически выполняет npm run build перед деплоем.
+
+* deploy — деплой собранного проекта на GitHub Pages (gh-pages -d dist).
+
+* Проверка типов
+
+* type-check — проверка типов с помощью vue-tsc --build.
+
+### Линтинг и форматирование
+
+* lint — проверка кода ESLint для файлов .ts, .tsx, .vue.
+
+* lint:fix — автоматическое исправление ошибок ESLint.
+
+* format — проверка форматирования Prettier для файлов .ts, .vue, .js, .jsx, .tsx.
+
+* format:fix — автоматическое форматирование кода с помощью Prettier.
+
+### Комплексные
+
+* check — полная проверка качества кода (линтер + типы + форматирование).
+
+* fix — автоматическая правка кода (линтер + форматирование) с последующей проверкой типов.
+
+## Структура и детали реализации
+Приложение представляет собой одну страницу - главная страница сайта художественной галереи. При появлении необходимости в других страницах, т.е. расширении сайта рекомендуется использовать Vue Router для управления роутингом. Поддержание подобного расширения сайта достигнуто вынесением страница в страничный компонент GalleryPage.
+
+### Компоненты
+<table border="1" style="width:60%; border-collapse: collapse;">
+  <tr>
+    <th style="width:15%;">Компонент</th>
+    <th>Описание</th>
+  </tr>
+  <tr>
+    <td>MasterHead</td>
+    <td>Общий компонент для страниц.</td>
+  </tr>
+  <tr>
+    <td>ThemeToggle</td>
+    <td>Отвечает за смену темы сайта (светлая/тёмная).</td>
+  </tr>
+  <tr>
+    <td>Search</td>
+    <td>Интерфейс для задания подстроки в названии произведения для поиска.</td>
+  </tr>
+  <tr>
+    <td>CardWrapper</td>
+    <td>Обёртка для Card (карточек текущей страницы).</td>
+  </tr>
+  <tr>
+    <td>Card</td>
+    <td>Карточка художника.</td>
+  </tr>
+  <tr>
+    <td>Pagination</td>
+    <td>Строка навигации по страницам. Динамически определяется для результатов без заданного заголовка поиска и для поиска по вхождению подстроки в название произведения.</td>
+  </tr>
+</table>
+
+### Стили
+<table border="1" style="width:60%; border-collapse: collapse;">
+  <tr>
+    <th style="width:15%;">Файл стилей</th>
+    <th>Описание</th>
+  </tr>
+  <tr>
+    <td>_theme.scss</td>
+    <td>Содержит палитру сайта и стили для его тем (светлая/тёмная). Смена тем достигнута путём переопределения глобальных переменных классом .dark-theme (_theme.scss) при присвоении его тегу body.</td>
+  </tr>
+  <tr>
+    <td>_variables.scss</td>
+    <td>Глобальные переменные типографии и адаптации. Адаптация сделана через grid колонки, которые переопределяются на брейк-поинтах ширины устройств.</td>
+  </tr>
+  <tr>
+    <td>fonts.scss</td>
+    <td>Файл с шрифтами, импортированными с Google Fonts.</td>
+  </tr>
+  <tr>
+    <td>reset.scss</td>
+    <td>Сброс стандартных стилей тегов для браузеров.</td>
+  </tr>
+  <tr>
+    <td>normalize.scss</td>
+    <td>Кастомная нормализация стилей тегов.</td>
+  </tr>
+  <tr>
+    <td>global.scss</td>
+    <td>Объединение файлов стилей приложения.</td>
+  </tr>
+</table>
