@@ -65,7 +65,6 @@ export const useGalleryStore = defineStore('gallery', {
     },
 
     async fetchPaintings() {
-      console.log('Fetching', this.currentPage);
       const response = await api.get('/paintings', {
         params: {
           _limit: this.limit,
@@ -73,7 +72,6 @@ export const useGalleryStore = defineStore('gallery', {
           q: this.query.paintingName,
         },
       });
-      console.log(response.data);
       this.paintings = response.data;
       this.totalCount = Number(response.headers['x-total-count']);
     },

@@ -10,6 +10,10 @@ const emit = defineEmits<{
 const queryChange = () => {
   emit('query-changed', searchText.value);
 };
+const queryClear = async () => {
+  searchText.value = '';
+  await emit('query-changed', searchText.value);
+};
 </script>
 <template>
   <div class="search-wrapper">
@@ -40,8 +44,8 @@ const queryChange = () => {
         v-show="searchText"
         type="button"
         class="search-block__clear"
-        @click="searchText = ''"
         aria-label="Очистить"
+        @click="queryClear"
       >
         <svg
           width="12"
